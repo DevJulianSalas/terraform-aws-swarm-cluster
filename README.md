@@ -6,7 +6,7 @@ Terraform module to create EC2 instances for a Docker Swarm cluster.
 
 ## Usage
 
-```
+```hcl
 module "swarm_ec2" {
   source = "your-org/ec2-swarm/aws"
 
