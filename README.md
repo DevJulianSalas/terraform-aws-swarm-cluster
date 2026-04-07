@@ -63,19 +63,10 @@ instances = {
     instance_type      = string
     subnet_id          = string
     security_group_ids = list(string)
-
     role = optional(string) # manager | worker
-
-    key_name             = optional(string)
     iam_instance_profile = optional(string)
-
-    associate_public_ip = optional(bool)
-
     user_data        = optional(string)
     user_data_base64 = optional(string)
-
-    enable_monitoring = optional(bool)
-    ebs_optimized     = optional(bool)
 
     root_block_device = optional(object({
       volume_size = number
