@@ -36,13 +36,14 @@ resource "aws_iam_instance_profile" "ssm" {
   role = aws_iam_role.ssm[0].name
 }
 resource "aws_instance" "this" {
-  for_each             = var.instances
-  ami                  = each.value.ami_id
-  instance_type        = each.value.instance_type
-  subnet_id            = each.value.subnet_id
-  iam_instance_profile = var.create_iam_instance_profile ? aws_iam_instance_profile.ssm[0].name : lookup(each.value, "iam_instance_profile", null)
-  user_data            = lookup(each.value, "user_data", null)
-  user_data_base64     = lookup(each.value, "user_data_base64", null)
+  for_each               = var.instances
+  ami                    = each.value.ami_id
+  instance_type          = each.value.instance_type
+  subnet_id              = each.value.subnet_id
+  iam_instance_profile   = var.create_iam_instance_profile ? aws_iam_instance_profile.ssm[0].name : lookup(each.value, "iam_instance_profile", null)
+  user_data              = lookup(each.value, "user_data", null)
+  user_data_base64       = lookup(each.value, "user_data_base64", null)
+  vpc_security_group_ids = each.value.security_group_ids
 
   dynamic "root_block_device" {
     for_each = lookup(each.value, "root_block_device", null) != null ? [each.value.root_block_device] : []
