@@ -40,7 +40,7 @@ resource "aws_instance" "this" {
   ami                    = each.value.ami_id
   instance_type          = each.value.instance_type
   subnet_id              = each.value.subnet_id
-  iam_instance_profile   = var.create_iam_instance_profile ? aws_iam_instance_profile.ssm[0].name : lookup(each.value, "iam_instance_profile", null)
+  iam_instance_profile   = var.create_iam_instance_profile ? aws_iam_instance_profile.ssm[0].name : var.iam_instance_profile
   user_data              = lookup(each.value, "user_data", null)
   user_data_base64       = lookup(each.value, "user_data_base64", null)
   vpc_security_group_ids = each.value.security_group_ids

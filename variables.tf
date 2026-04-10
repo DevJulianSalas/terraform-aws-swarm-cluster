@@ -41,8 +41,6 @@ variable "instances" {
     role = optional(string) # manager | worker
 
     key_name             = optional(string)
-    iam_instance_profile = optional(string)
-
     associate_public_ip = optional(bool)
 
     user_data        = optional(string)
