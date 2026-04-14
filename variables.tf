@@ -1,12 +1,3 @@
-variable "iam_instance_profile" {
-  description = "IAM instance profile with SSM permissions"
-  type        = string
-}
-
-variable "create_iam_instance_profile" {
-  type    = bool
-  default = false
-}
 variable "name" {
   description = "Base name for resources"
   type        = string
@@ -40,14 +31,13 @@ variable "instances" {
 
     role = optional(string) # manager | worker
 
-    key_name             = optional(string)
-    associate_public_ip = optional(bool)
-
-    user_data        = optional(string)
-    user_data_base64 = optional(string)
-
-    enable_monitoring = optional(bool)
-    ebs_optimized     = optional(bool)
+    key_name                = optional(string)
+    associate_public_ip     = optional(bool)
+    iam_instance_profile    = optional(string)
+    user_data               = optional(string)
+    user_data_base64        = optional(string)
+    enable_monitoring       = optional(bool)
+    ebs_optimized           = optional(bool)
 
     root_block_device = optional(object({
       volume_size = number

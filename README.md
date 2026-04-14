@@ -13,9 +13,6 @@ module "swarm_ec2" {
   name        = "swarm"
   environment = "prod"
   tenant      = "acme"
-
-  create_iam_instance_profile = true
-
   instances = {
     manager-1 = {
       ami_id             = "ami-123456"
@@ -52,7 +49,6 @@ Optional
 | ----------------------------- | ---------------------------- | ------------- | ------- |
 | `tenant`                      | Tenant or project identifier | `string`      | `null`  |
 | `tags`                        | Global tags                  | `map(string)` | `{}`    |
-| `create_iam_instance_profile` | Enable SSM access            | `bool`        | `false` |
 
 
 ### Instances Structure
