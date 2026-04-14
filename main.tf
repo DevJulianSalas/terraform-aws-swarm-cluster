@@ -10,7 +10,7 @@ resource "aws_instance" "this" {
   ami                    = each.value.ami_id
   instance_type          = each.value.instance_type
   subnet_id              = each.value.subnet_id
-  iam_instance_profile   = lookup(each.value, "aws_iam_instance_profile", null)
+  iam_instance_profile   = lookup(each.value, "iam_instance_profile", null)
   user_data              = lookup(each.value, "user_data", null)
   user_data_base64       = lookup(each.value, "user_data_base64", null)
   vpc_security_group_ids = each.value.security_group_ids
