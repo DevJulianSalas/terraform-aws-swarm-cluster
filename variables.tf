@@ -54,7 +54,11 @@ variable "instances" {
       volume_type = string
       delete_on_termination = optional(bool)
     }))
-
+    metadata_options = optional(object({
+      http_endpoint = optional(string)
+      http_tokens   = optional(string)
+      instance_metadata_tags = optional(string)
+    }))
     tags = optional(map(string))
   }))
 }
