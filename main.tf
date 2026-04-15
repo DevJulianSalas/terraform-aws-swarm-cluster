@@ -26,9 +26,9 @@ resource "aws_instance" "this" {
   dynamic "metadata_options" {
     for_each = lookup(each.value, "metadata_options", null) != null ? each.value.metadata_options : {}
     content {
-      http_endpoint          = lookup(root_block_device.value, "http_endpoint", "enabled")
-      http_tokens            = lookup(root_block_device.value, "http_tokens", "optional")
-      instance_metadata_tags = lookup(root_block_device.value, "instance_metadata_tags", "disabled")
+      http_endpoint          = lookup(metadata_options.value, "http_endpoint", "enabled")
+      http_tokens            = lookup(metadata_options.value, "http_tokens", "optional")
+      instance_metadata_tags = lookup(metadata_options.value, "instance_metadata_tags", "disabled")
     }
   }
 
