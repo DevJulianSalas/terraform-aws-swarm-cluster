@@ -23,15 +23,11 @@ resource "aws_instance" "this" {
       delete_on_termination = lookup(root_block_device.value, "delete_on_termination", true)
     }
   }
-  dynamic "metadata_options" {
-    for_each = lookup(each.value, "metadata_options", null) != null ? each.value.metadata_options : {}
-    content {
-      http_endpoint          = lookup(metadata_options.value, "http_endpoint", "enabled")
-      http_tokens            = lookup(metadata_options.value, "http_tokens", "optional")
-      instance_metadata_tags = lookup(metadata_options.value, "instance_metadata_tags", "disabled")
-    }
+  metadata_options {
+    http_endpoint          = try(each.value.metadata_options.http_endpoint, "enabled")
+    http_tokens            = try(each.value.metadata_options.http_tokens, "optional")
+    instance_metadata_tags = try(each.value.metadata_options.instance_metadata_tags, "disabled")
   }
-
   tags = merge(
     {
       Name        = coalesce(lookup(each.value, "name", null), "${local.name_prefix}-${each.key}")
