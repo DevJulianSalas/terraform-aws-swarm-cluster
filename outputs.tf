@@ -12,3 +12,12 @@ output "private_ips" {
     k => v.private_ip
   }
 }
+
+output "instance_manager_ids" {
+  description = "Map of instance manager IDs filter by manager tag to associate as the manager role in the Docker Swarm"
+  value = {
+    for k, v in aws_instance.this :
+    k => v.id
+    if try(v.tags["Role"], "") == "manager"
+  }
+}

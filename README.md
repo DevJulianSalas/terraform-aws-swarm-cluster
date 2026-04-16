@@ -76,11 +76,12 @@ instances = {
 ```
 ### Outputs
 
-| Name                  | Description                  |
-| --------------------- | ---------------------------- |
-| `instance_ids`        | Map of EC2 instance IDs      |
-| `private_ips`         | Map of private IPs           |
-| `public_ips`          | Map of public IPs            |
+| Name                  | Description                                               |
+| --------------------- | --------------------------------------------------------- |
+| `instance_ids`        | Map of EC2 instance IDs                                   |
+| `instance_manager_ids`| Map of manager instance ids filter by manager tag/role    |
+| `public_ips`          | Map of public IPs                                         |
+| `private_ips`         | Map of private IPs                                        |
 
 
 ### Notes
